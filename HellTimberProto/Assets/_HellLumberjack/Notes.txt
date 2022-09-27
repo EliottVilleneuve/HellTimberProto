@@ -1,0 +1,2 @@
+Gifs
+Build + export sur Itch.io (Windows + WebGL)
