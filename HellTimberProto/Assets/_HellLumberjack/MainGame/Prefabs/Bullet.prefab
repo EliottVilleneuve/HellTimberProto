@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7829564432152195731}
   - component: {fileID: 7829564432152195730}
   - component: {fileID: 7829564432152195732}
+  - component: {fileID: 8081222534699661762}
   m_Layer: 6
   m_Name: Bullet
   m_TagString: Bullet
@@ -143,9 +144,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lifeTime: 30
+  lifeTime: 10
   damage: 10
   safeStartDuration: 0.2
   solidObjectLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &8081222534699661762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829564432152195729}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a50eebbc06f12468620dd92ca3f0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  halfArenaSize: {x: 28.5, y: 25}
