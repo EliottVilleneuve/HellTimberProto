@@ -151,6 +151,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   parriedSpeed: 40
+  parriedDamage: 30
+  visual: {fileID: 7829564432099576392}
+  pariableMaterial: {fileID: 2100000, guid: 6af9b15a71844c143bfccd2171fd7122, type: 2}
+  pariableOdd: 0
+  aimedParry: 1
 --- !u!114 &8081222534699661762
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1657,6 +1657,7 @@ Transform:
   - {fileID: 1113873239}
   - {fileID: 1104465925}
   - {fileID: 2009871306}
+  - {fileID: 656339124}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -9025,6 +9026,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2487560342089876581, guid: 26f169b291622cd4f8ad1e3d32e52be8, type: 3}
   m_PrefabInstance: {fileID: 1658044704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &656339123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656339124}
+  - component: {fileID: 656339125}
+  m_Layer: 0
+  m_Name: SuccessfulParryHitStop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &656339124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656339123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 309273083}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &656339125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656339123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a46c0145d7688b4cbb749e2af19e1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 0
+  duration: 0.2
 --- !u!1 &661899892
 GameObject:
   m_ObjectHideFlags: 0
@@ -11325,10 +11372,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98766124bbffebd40b3665c19ac2befb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatarSwing: {fileID: 309273089}
+  avatarAim: {fileID: 309273084}
+  parryType: 1
   OnParryBullet:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2009871307}
+      - m_Target: {fileID: 656339125}
         m_TargetAssemblyTypeName: HitStop, Assembly-CSharp
         m_MethodName: TriggerHitStop
         m_Mode: 1

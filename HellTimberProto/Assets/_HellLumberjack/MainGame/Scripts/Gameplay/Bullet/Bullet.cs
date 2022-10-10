@@ -15,6 +15,11 @@ namespace HellLumber
         public LayerMask solidObjectLayer;
 
         public float parriedSpeed;
+        public int parriedDamage;
+        public Renderer visual;
+        public Material pariableMaterial;
+        public float pariableOdd;
+        public bool aimedParry;
 
         private Transform t;
         private Vector3 bulletMovement;
@@ -23,6 +28,7 @@ namespace HellLumber
         private float remainingSafeTime;
         private Vector3 endScale;
 
+        private bool pariable;
         private bool parried;
 
         public bool Enemy => !parried;
@@ -36,6 +42,9 @@ namespace HellLumber
         private void Start()
         {
             parried = false;
+
+            pariable = pariableOdd > UnityEngine.Random.value;
+            if (pariable && pariableOdd < 1) visual.material = pariableMaterial;
 
             t = transform;
 
@@ -77,22 +86,27 @@ namespace HellLumber
         {
             if (remainingSafeTime > 0) return;
 
-            entityHealth.DirectionalHurt(damage, t);
+            entityHealth.DirectionalHurt(parried? parriedDamage : damage, t);
             Destroy(gameObject);
         }
 
-        public void Parry(Transform parryOrigin)
+        public bool Parry(Transform parryOrigin, Vector3 aimDirection)
         {
-            Vector3 awayPlayer = t.position - parryOrigin.position;
+            if (!pariable) return false;
 
             Vector3 parryDirection = -t.forward;
-            if(Vector3.Dot(parryDirection, awayPlayer) < 0)
+            if (aimedParry) parryDirection = aimDirection;
+
+            /*Vector3 awayPlayer = t.position - parryOrigin.position;
+            if (Vector3.Dot(parryDirection, awayPlayer) < 0)
             {
                 parryDirection = awayPlayer;
-            }
+            }*/
 
             parried = true;
             bulletMovement = parryDirection * parriedSpeed;
+
+            return true;
         }
     }
 
