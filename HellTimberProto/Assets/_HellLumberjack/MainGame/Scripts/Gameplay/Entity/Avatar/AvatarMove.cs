@@ -17,7 +17,7 @@ namespace HellLumber
 
         void Update()
         {
-            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
             Vector3 movement = Vector3.right * input.x + Vector3.forward * input.y;
             if (movement.magnitude > 1) movement.Normalize();
