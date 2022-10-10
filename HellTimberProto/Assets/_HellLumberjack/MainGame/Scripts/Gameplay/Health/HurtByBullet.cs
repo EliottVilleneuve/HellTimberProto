@@ -4,9 +4,10 @@ namespace HellLumber
 {
     public class HurtByBullet : MonoBehaviour
     {
-        private const string BULLET_TAG = "Bullet";
+        public const string BULLET_TAG = "Bullet";
 
         public EntityHealth entityHealth;
+        public bool hurtByEnemyBullet = true;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -14,7 +15,7 @@ namespace HellLumber
 
             if (other.TryGetComponent(out Bullet bullet))
             {
-                bullet.Damage(entityHealth);
+                if(bullet.Enemy == hurtByEnemyBullet) bullet.Damage(entityHealth);
             }
             else
             {

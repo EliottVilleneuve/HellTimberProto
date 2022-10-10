@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace HellLumber
@@ -13,12 +14,18 @@ namespace HellLumber
 
         public LayerMask solidObjectLayer;
 
+        public float parriedSpeed;
+
         private Transform t;
         private Vector3 bulletMovement;
         private Vector3 currentMovement;
         
         private float remainingSafeTime;
         private Vector3 endScale;
+
+        private bool parried;
+
+        public bool Enemy => !parried;
 
         private void OnDrawGizmosSelected()
         {
@@ -28,6 +35,8 @@ namespace HellLumber
 
         private void Start()
         {
+            parried = false;
+
             t = transform;
 
             remainingSafeTime = safeStartDuration;
@@ -70,6 +79,20 @@ namespace HellLumber
 
             entityHealth.DirectionalHurt(damage, t);
             Destroy(gameObject);
+        }
+
+        public void Parry(Transform parryOrigin)
+        {
+            Vector3 awayPlayer = t.position - parryOrigin.position;
+
+            Vector3 parryDirection = -t.forward;
+            if(Vector3.Dot(parryDirection, awayPlayer) < 0)
+            {
+                parryDirection = awayPlayer;
+            }
+
+            parried = true;
+            bulletMovement = parryDirection * parriedSpeed;
         }
     }
 

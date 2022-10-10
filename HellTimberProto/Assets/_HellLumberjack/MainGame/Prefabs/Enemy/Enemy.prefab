@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 3547763292087240435}
   - component: {fileID: 8733019965246406950}
   - component: {fileID: 3547763292087240433}
+  - component: {fileID: 6949281639614827835}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -534,6 +535,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   enemy: {fileID: 3547763292087240435}
+--- !u!114 &6949281639614827835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547763292087240430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1123ab5d4af604fa0526e0ccd4aaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityHealth: {fileID: 3547763292087240433}
+  hurtByEnemyBullet: 0
 --- !u!1 &3772975979959233490
 GameObject:
   m_ObjectHideFlags: 0

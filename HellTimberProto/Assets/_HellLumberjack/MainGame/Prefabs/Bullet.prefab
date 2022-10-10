@@ -150,6 +150,7 @@ MonoBehaviour:
   solidObjectLayer:
     serializedVersion: 2
     m_Bits: 128
+  parriedSpeed: 40
 --- !u!114 &8081222534699661762
 MonoBehaviour:
   m_ObjectHideFlags: 0
