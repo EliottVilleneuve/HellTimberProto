@@ -13,6 +13,8 @@ namespace HellLumber
         private bool healthEmpty;
         private bool destroyed;
 
+        private bool immune;
+
         public bool HealthEmpty => healthEmpty;
 
         public event Action OnHurt;
@@ -25,13 +27,19 @@ namespace HellLumber
             currentHealth = maxHealth;
             healthEmpty = false;
             destroyed = false;
+            immune = false;
         }
 
-        private void Hurt(int damage)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="damage"></param>
+        /// <returns>Return true if succesfully damaged</returns>
+        private bool Hurt(int damage)
         {
-            if (destroyed)
+            if (destroyed || immune)
             {
-                return;
+                return false;
             }
 
             currentHealth -= damage;
@@ -50,13 +58,12 @@ namespace HellLumber
                 }
                 destroyed = true;
             }
+            return true;
         }
 
         public void NormalHurt(int damage)
         {
-            if (destroyed) return;
-
-            Hurt(damage);
+            if (Hurt(damage)) return;
 
             NormalHurtBehaviour(damage);
         }
@@ -65,15 +72,18 @@ namespace HellLumber
 
         public void DirectionalHurt(int damage, Transform from, Vector3 origin)
         {
-            if (destroyed) return;
-
-            Hurt(damage);
+            if (!Hurt(damage)) return;
 
             DirectionalHurtBehaviour(damage, from, origin);
         }
         protected virtual void AnyHurtBehaviour(int damage) { }
         protected virtual void NormalHurtBehaviour(int damage) { }
         protected virtual void DirectionalHurtBehaviour(int damage, Transform from, Vector3 origin) { }
+
+        public void SetImmunity(bool immunity)
+        {
+            immune = immunity;
+        }
     }
 
 }

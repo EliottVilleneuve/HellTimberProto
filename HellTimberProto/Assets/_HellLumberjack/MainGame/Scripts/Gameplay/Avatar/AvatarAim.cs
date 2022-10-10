@@ -5,6 +5,8 @@ public class AvatarAim : MonoBehaviour
     public Camera cam;
     public Transform aimingPart;
 
+    public Vector3 Direction { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,7 @@ public class AvatarAim : MonoBehaviour
         Vector3 target = ray.GetPoint(distanceHit);
         target.y = aimingPart.position.y;
         aimingPart.LookAt(target);
+
+        Direction = aimingPart.forward;
     }
 }

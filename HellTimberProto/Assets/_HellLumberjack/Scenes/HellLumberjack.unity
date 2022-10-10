@@ -1594,6 +1594,7 @@ GameObject:
   - component: {fileID: 309273087}
   - component: {fileID: 309273090}
   - component: {fileID: 309273091}
+  - component: {fileID: 309273092}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Avatar
@@ -2080,6 +2081,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 0.2
   duration: 0.5
+--- !u!114 &309273092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309273080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c29ebb368e756d439ee70327225fef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 309273082}
+  avatarMove: {fileID: 309273081}
+  avatarAim: {fileID: 309273084}
+  avatarHealth: {fileID: 309273085}
+  avatarSwing: {fileID: 309273089}
+  dashOnInput: 1
+  dashOnHoldSwing: 1
+  dashDuration: 0.1
+  dashDistance: 10
+  stunTime: 0.5
 --- !u!1 &331878950
 GameObject:
   m_ObjectHideFlags: 0
@@ -11664,6 +11687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
