@@ -60,14 +60,14 @@ namespace HellLumber
             }
             else
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     SwingWeapon(normalAxe, damage, normalSwingVisual, normalRestVisual);
                     return;
                 }
             }
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetButton("Fire1"))
             {
                 holdingTime += Time.deltaTime;
 
@@ -86,7 +86,7 @@ namespace HellLumber
                     holdRestVisual.SetActive(true);
                 }
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetButtonUp("Fire1"))
             {
                 if(isHolding)
                 {
