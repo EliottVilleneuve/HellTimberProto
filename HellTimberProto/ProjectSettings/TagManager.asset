@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - WoodPiece
   - Avatar
+  - TotemZone
   layers:
   - Default
   - TransparentFX

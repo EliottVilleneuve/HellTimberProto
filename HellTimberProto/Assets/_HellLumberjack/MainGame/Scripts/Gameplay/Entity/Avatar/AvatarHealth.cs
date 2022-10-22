@@ -9,6 +9,8 @@ namespace HellLumber
     {
         public UnityEvent<float> OnChangeLifePercent;
 
+        [HideInInspector] public bool autoGameOver = true;
+
         protected override void Start()
         {
             base.Start();
@@ -24,9 +26,14 @@ namespace HellLumber
         {
             if(HealthEmpty)
             {
-                Destroy(gameObject);
+                GameOver();
             }
             UpdateHealth();
+        }
+
+        public void GameOver()
+        {
+            Destroy(gameObject);
         }
     }
 

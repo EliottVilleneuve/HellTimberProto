@@ -9,17 +9,22 @@ public class Buildable : MonoBehaviour
     public Renderer[] renderers;
     public Material placementMaterial;
 
+    public bool autoPlace = false;
+
     private Color unbuildablePlacementColor = Color.red;
 
     private int numRenderer;
     private Material[] previousMaterials;
 
     private bool canBePlaced = true;
+    private bool build = false;
 
     public UnityEvent OnBuilt;
 
     private void Start()
     {
+        if (autoPlace || build) return;
+
         collider.enabled = false;
         unbuildablePlacementColor.a = placementMaterial.color.a;
 
@@ -48,6 +53,7 @@ public class Buildable : MonoBehaviour
             renderers[i].material = previousMaterials[i];
         }
         collider.enabled = true;
+        build = true;
 
         OnBuilt?.Invoke();
     }
@@ -55,5 +61,6 @@ public class Buildable : MonoBehaviour
     public void Setup(bool canPlaceBuild)
     {
         canBePlaced = canPlaceBuild;
+        build = false;
     }
 }

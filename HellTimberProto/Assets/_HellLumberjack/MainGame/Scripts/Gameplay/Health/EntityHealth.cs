@@ -18,6 +18,7 @@ namespace HellLumber
         public bool HealthEmpty => healthEmpty;
 
         public event Action OnHurt;
+        public event Action<Transform, Vector3> OnDirectionalDamage;
 
         public UnityEvent OnDamage;
         public UnityEvent OnAutoDestroy;
@@ -73,6 +74,8 @@ namespace HellLumber
         public void DirectionalHurt(int damage, Transform from, Vector3 origin)
         {
             if (!Hurt(damage)) return;
+
+            OnDirectionalDamage?.Invoke(from, origin);
 
             DirectionalHurtBehaviour(damage, from, origin);
         }

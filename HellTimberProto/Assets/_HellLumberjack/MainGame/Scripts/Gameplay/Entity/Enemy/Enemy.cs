@@ -147,7 +147,7 @@ namespace HellLumber
         public void NormalHit(bool KO)
         {
             if (KO) EnemyDestroy();
-            else stunTime = stunDuration;
+            else SetStunTime(stunDuration);
         }
 
         public void KnockBackHit(Vector3 knockBackDirection, bool KO, int damage)
@@ -163,12 +163,17 @@ namespace HellLumber
             else
             {
                 knockBack = knockBackDirection * knockBackDistance / stunDuration;
-                stunTime = stunDuration;
+                SetStunTime(stunDuration);
             }
 
             hitStunTime = baseHitStun + hitStunByDamage * damage;
             doAction = DoActionHitStun;
             //doAction = DoActionLaunched;
+        }
+
+        public void SetStunTime(float duration)
+        {
+            stunTime = duration;
         }
 
         private void DoActionHitStun()

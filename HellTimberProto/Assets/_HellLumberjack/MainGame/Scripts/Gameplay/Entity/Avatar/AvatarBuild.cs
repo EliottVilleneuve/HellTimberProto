@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +14,6 @@ public class AvatarBuild : MonoBehaviour
 
     public float scrollAmountToSwitch = 2;
 
-
     private int minimumWoodToBuild;
 
     private BuildSO selectedBuildType;
@@ -22,6 +22,7 @@ public class AvatarBuild : MonoBehaviour
     private Buildable currentBuildablePlacing;
     private bool isPlacingBuild;
     private bool canPlaceBuild;
+
 
     private float scrollAmount = 0;
 
@@ -51,24 +52,6 @@ public class AvatarBuild : MonoBehaviour
 
     void Update()
     {
-        /*if (currentWood < selectedBuildType.woodCost)
-        {
-            if (currentWood < minimumWoodToBuild) return;
-
-            int safeEscape = 0;
-            while(currentWood < selectedBuildType.woodCost)
-            {
-                SetBuildType(selectedBuidIndex + 1);
-                safeEscape++;
-                if(safeEscape > 100)
-                {
-                    Debug.LogError("infinite loop avoided !");
-                    return;
-                }
-            }
-            return;
-        }*/
-
         //SCROLL
         float scroll = Input.mouseScrollDelta.y;
         if (scroll * scrollAmount < 0) scrollAmount = 0;//If opposite sign, we reset the scroll amount
@@ -121,6 +104,7 @@ public class AvatarBuild : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("WoodPiece")) return;
+        if (!enabled) return;
 
         Destroy(other.gameObject);
         currentWood += 25;
@@ -157,18 +141,6 @@ public class AvatarBuild : MonoBehaviour
         else if (index >= allBuildType.Length) index = 0;
 
         if (!setup) OnSwitchBuild?.Invoke();
-
-        //If we don't have enough wood to place this
-        /*if (!canPlaceBuild)
-        {
-            if (currentWood >= minimumWoodToBuild) StopPlacing();
-            else
-            {
-                int indexChange = scrollUp ? 1 : -1;//If we're in scroll up mode, we switch to the greater index
-                SetBuildType(selectedBuidIndex + indexChange);
-            }
-            return;
-        }*/
 
         selectedBuildType = allBuildType[index];
         selectedBuidIndex = index;
