@@ -25,11 +25,16 @@ namespace HellLumber
 
         public int damage = 10;
 
+        public Transform damageBoostFeedback;
+        public AnimationCurve feedbackSizeEvoDamageBoost;
+
         private float timeBeforeAxeUsable;
         private float holdingTime;
 
         private bool isHolding;
         private float holdingStrength;
+
+        private int damageBoost;
 
         public UnityEvent OnSwing;
         public UnityEvent OnCircularSwing;
@@ -50,6 +55,7 @@ namespace HellLumber
             isHolding = false;
             normalRestVisual.SetActive(true);
             holdRestVisual.SetActive(false);
+            UpdateDamageBoostFeedback();
         }
 
         void Update()
@@ -109,7 +115,8 @@ namespace HellLumber
 
         private void SwingWeapon(WeaponHitbox weapon, int damage, GameObject swingVisual, GameObject restVisual)
         {
-            AttackResult attackResult = weapon.Attack(damage, transform);
+            AttackResult attackResult = weapon.Attack(damage + damageBoost, transform);
+            ResetDamageBoost();
 
             if (weapon == holdAxe)
             {
@@ -132,6 +139,21 @@ namespace HellLumber
             swingVisual.SetActive(false);
 
             normalRestVisual.SetActive(true);
+        }
+
+        public void AddDamageBoost(int boostAdded)
+        {
+            damageBoost += boostAdded;
+            UpdateDamageBoostFeedback();
+        }
+        public void ResetDamageBoost()
+        {
+            damageBoost = 0;
+            UpdateDamageBoostFeedback();
+        }
+        private void UpdateDamageBoostFeedback()
+        {
+            damageBoostFeedback.localScale = Vector3.one * feedbackSizeEvoDamageBoost.Evaluate(damageBoost);
         }
     }
 }
