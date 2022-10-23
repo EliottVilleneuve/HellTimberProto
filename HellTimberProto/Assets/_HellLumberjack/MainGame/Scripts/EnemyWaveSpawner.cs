@@ -75,7 +75,7 @@ public class EnemyWaveSpawner : MonoBehaviour
             OnDecrementCounter?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace)) timeBeforeNextWave = 0;
+        if (Input.GetButtonDown("Skip")) timeBeforeNextWave = 0;
 
         if (timeBeforeNextWave > 0) return;
 

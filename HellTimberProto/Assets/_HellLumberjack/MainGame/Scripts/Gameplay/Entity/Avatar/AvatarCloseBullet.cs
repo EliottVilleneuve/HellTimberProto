@@ -49,7 +49,6 @@ public class AvatarCloseBullet : MonoBehaviour {
         renderer.enabled = true;
         SetScore(score + scoreGainedPerContact);
         avatarSwing.AddDamageBoost(damageBoostPerContact);
-        U.L("close !");
         yield return new WaitForSeconds(flickerDuration);
         renderer.enabled = false;
     }

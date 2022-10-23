@@ -61,6 +61,8 @@ namespace HellLumber {
                 }
                 else if (Input.GetButtonUp(buildInfos[i].inputAxisName))
                 {
+                    if (currentBuildable == null) return;
+
                     currentBuildable.Place(spawnPoint);
                     currentBuildable = null;
 
