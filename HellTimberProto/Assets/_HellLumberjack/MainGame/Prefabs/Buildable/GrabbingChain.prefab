@@ -384,14 +384,28 @@ MonoBehaviour:
   collider: {fileID: 3217471733960960435}
   renderers:
   - {fileID: 3217471733546075216}
+  - {fileID: 3217471733342053957}
+  - {fileID: 3217471733014306042}
   placementMaterial: {fileID: 2100000, guid: bd4b447e1de19cc488159cf5d32a5d12, type: 2}
-  autoPlace: 1
+  autoPlace: 0
   OnBuilt:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3217471733450268778}
         m_TargetAssemblyTypeName: FlashColor, Assembly-CSharp
         m_MethodName: SetDefaultMaterial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3217471733960960436}
+        m_TargetAssemblyTypeName: HellLumber.GrabbingChain, Assembly-CSharp
+        m_MethodName: StartGrab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

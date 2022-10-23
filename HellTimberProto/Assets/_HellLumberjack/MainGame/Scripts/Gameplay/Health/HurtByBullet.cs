@@ -8,6 +8,7 @@ namespace HellLumber
 
         public EntityHealth entityHealth;
         public bool hurtByEnemyBullet = true;
+        public bool useTriggerEnter = true;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -15,7 +16,7 @@ namespace HellLumber
 
             if (other.TryGetComponent(out Bullet bullet))
             {
-                if(bullet.Enemy == hurtByEnemyBullet) bullet.Damage(entityHealth);
+                if (bullet.Enemy == hurtByEnemyBullet) bullet.Damage(entityHealth);
             }
             else
             {

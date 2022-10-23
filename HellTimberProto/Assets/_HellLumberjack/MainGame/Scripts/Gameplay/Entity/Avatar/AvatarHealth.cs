@@ -11,6 +11,8 @@ namespace HellLumber
 
         [HideInInspector] public bool autoGameOver = true;
 
+        public Action OnGameOver;
+
         protected override void Start()
         {
             base.Start();
@@ -33,6 +35,7 @@ namespace HellLumber
 
         public void GameOver()
         {
+            OnGameOver?.Invoke();
             Destroy(gameObject);
         }
     }

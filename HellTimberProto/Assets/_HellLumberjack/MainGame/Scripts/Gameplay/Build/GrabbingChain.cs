@@ -35,8 +35,6 @@ namespace HellLumber {
             remainingGrabbingTime = 0;
 
             entityHealth.OnDirectionalDamage += EntityHealth_OnDirectionalDamage;
-
-            StartGrab();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -93,7 +91,7 @@ namespace HellLumber {
             if (remainingCooldown <= 0) StartGrab();
         }
 
-        private void StartGrab()
+        public void StartGrab()
         {
             isGrabbing = true;
             remainingGrabbingTime = grabbingTime;

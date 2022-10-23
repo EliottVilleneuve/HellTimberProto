@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using HellLumber;
 
-public class WinScreen : MonoBehaviour
+public class EndScreen : MonoBehaviour
 {
     public EnemyWaveSpawner enemyWaveSpawner;
+    public AvatarHealth avatarHealth;
     public GameObject content;
 
     public Button restartButton;
@@ -17,7 +19,8 @@ public class WinScreen : MonoBehaviour
     {
         content.SetActive(false);
 
-        enemyWaveSpawner.OnWon += EnemyWaveSpawner_OnWon;
+        if (enemyWaveSpawner != null) enemyWaveSpawner.OnWon += OnEnd;
+        else avatarHealth.OnGameOver += OnEnd;
 
         restartButton.onClick.AddListener(OnRestartButton);
         backMenuButton.onClick.AddListener(OnBackMenu);
@@ -33,7 +36,7 @@ public class WinScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void EnemyWaveSpawner_OnWon()
+    private void OnEnd()
     {
         content.SetActive(true);
     }

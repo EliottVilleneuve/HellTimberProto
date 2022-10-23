@@ -8,7 +8,7 @@ using HellLumber;
 public class AvatarCloseBullet : MonoBehaviour {
     private const string BULLET_TAG = "Bullet";
 
-    public Renderer renderer;
+    public new Renderer renderer;
     public float flickerDuration = 0.1f;
 
     public TextMeshProUGUI scoreText;

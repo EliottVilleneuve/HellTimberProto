@@ -17,6 +17,7 @@ namespace HellLumber {
         public BuildInfo[] buildInfos;
 
         private float currentWoodQuantity = 50;
+        private Buildable currentBuildable;
 
         public UnityEvent<float> OnChangeQuantityPercent;
         public UnityEvent OnBuild;
@@ -50,15 +51,21 @@ namespace HellLumber {
 
             for (int i = 0; i < buildInfos.Length; i++)
             {
-                if (buildInfos[i].blocked) continue;
-                if (Input.GetButtonDown(buildInfos[i].inputAxisName))
+                if (Input.GetButtonDown(buildInfos[i].inputAxisName) && !buildInfos[i].blocked)
                 {
+                    if (currentBuildable != null) return;
+                    
+                    currentBuildable = Instantiate(buildInfos[i].buildable, spawnPoint.position, spawnPoint.rotation);
+                    currentBuildable.transform.SetParent(spawnPoint);
+                    currentBuildable.Setup(true);
+                }
+                else if (Input.GetButtonUp(buildInfos[i].inputAxisName))
+                {
+                    currentBuildable.Place(spawnPoint);
+                    currentBuildable = null;
+
                     currentWoodQuantity -= woodQuantityLostPerBuild;
                     UpdateWoodCount();
-
-                    Buildable buildable = Instantiate(buildInfos[i].buildable, spawnPoint);
-                    buildable.Setup(true);
-                    buildable.Place(spawnPoint);
 
                     OnBuild?.Invoke();
                 }

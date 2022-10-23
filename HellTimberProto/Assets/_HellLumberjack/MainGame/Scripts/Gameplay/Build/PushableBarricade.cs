@@ -5,7 +5,7 @@ namespace HellLumber {
     public class PushableBarricade : EntityHealth {
 
         public float pushSpeed;
-        public Rigidbody rigidbody;
+        public new Rigidbody rigidbody;
 
         public LayerMask crushLayer;
 
