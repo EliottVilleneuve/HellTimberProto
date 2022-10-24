@@ -68,8 +68,8 @@ public class AvatarBuild : MonoBehaviour
             scrollAmount -= scrollAmountToSwitch;
         }
 
-        if (Input.GetKeyDown(KeyCode.A)) SetBuildType(selectedBuidIndex - 1);
-        if (Input.GetKeyDown(KeyCode.E)) SetBuildType(selectedBuidIndex + 1);
+        //if (Input.GetKeyDown(KeyCode.A)) SetBuildType(selectedBuidIndex - 1);
+        //if (Input.GetKeyDown(KeyCode.E)) SetBuildType(selectedBuidIndex + 1);
 
         //PLACING
         if (isPlacingBuild)//If we are placing a build

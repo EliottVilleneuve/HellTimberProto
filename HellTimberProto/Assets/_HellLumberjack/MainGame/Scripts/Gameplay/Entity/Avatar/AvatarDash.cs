@@ -78,7 +78,7 @@ public class AvatarDash : MonoBehaviour {
 
     private bool DashInput()
     {
-        if(dashType == DashType.MiddleClick) return Input.GetButtonDown("Dash");
+        if(dashType == DashType.MiddleClick) return Controller.GetButtonDown("Dash", ButtonInputType.Dash);
         if(dashType == DashType.Space) return Input.GetKeyDown(KeyCode.Space);
         return false;
     }

@@ -28,6 +28,9 @@ namespace HellLumber
         public Transform damageBoostFeedback;
         public AnimationCurve feedbackSizeEvoDamageBoost;
 
+        public bool overrideSwingInput;
+        public string overridingSwingInput;
+
         private float timeBeforeAxeUsable;
         private float holdingTime;
 
@@ -50,6 +53,8 @@ namespace HellLumber
 
         public float HoldingStrength => holdingStrength;
 
+        public string SwingInput => overrideSwingInput? overridingSwingInput : "Fire1";
+
         private void Start()
         {
             isHolding = false;
@@ -66,14 +71,14 @@ namespace HellLumber
             }
             else
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Controller.GetButtonDown(SwingInput, ButtonInputType.Swing))
                 {
                     SwingWeapon(normalAxe, damage, normalSwingVisual, normalRestVisual);
                     return;
                 }
             }
 
-            if (Input.GetButton("Fire1"))
+            if (Controller.GetButton(SwingInput, ButtonInputType.Swing))
             {
                 holdingTime += Time.deltaTime;
 
@@ -92,7 +97,7 @@ namespace HellLumber
                     holdRestVisual.SetActive(true);
                 }
             }
-            if (Input.GetButtonUp("Fire1"))
+            if (Controller.GetButtonUp(SwingInput, ButtonInputType.Swing))
             {
                 if(isHolding)
                 {

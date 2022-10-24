@@ -23,6 +23,10 @@ namespace HellLumber {
         public UnityEvent OnBuild;
         public UnityEvent OnPickupWood;
 
+        public bool needHoldBuild;
+
+        public event Action<bool> OnSwitchBuildMode;
+
         private void Start () 
         {
             avatarHealth.OnHurt += AvatarHealth_OnHurt;
@@ -49,17 +53,30 @@ namespace HellLumber {
         {
             if (currentWoodQuantity < woodQuantityLostPerBuild) return;
 
+            if (needHoldBuild)
+            {
+                if (Controller.GetButtonDown("HoldBuild", ButtonInputType.HoldBuild))
+                {
+                    OnSwitchBuildMode?.Invoke(true);
+                }else if (Controller.GetButtonUp("HoldBuild", ButtonInputType.HoldBuild))
+                {
+                    OnSwitchBuildMode?.Invoke(false);
+                }
+                if(!Controller.GetButton("HoldBuild", ButtonInputType.HoldBuild)) return;
+            }
+
             for (int i = 0; i < buildInfos.Length; i++)
             {
-                if (Input.GetButtonDown(buildInfos[i].inputAxisName) && !buildInfos[i].blocked)
+                if (Controller.GetButtonDown(buildInfos[i].inputAxisName, buildInfos[i].buttonInputType) && !buildInfos[i].blocked)
                 {
                     if (currentBuildable != null) return;
                     
                     currentBuildable = Instantiate(buildInfos[i].buildable, spawnPoint.position, spawnPoint.rotation);
                     currentBuildable.transform.SetParent(spawnPoint);
                     currentBuildable.Setup(true);
+                    if (!needHoldBuild) OnSwitchBuildMode?.Invoke(true);
                 }
-                else if (Input.GetButtonUp(buildInfos[i].inputAxisName))
+                else if (Controller.GetButtonUp(buildInfos[i].inputAxisName, buildInfos[i].buttonInputType))
                 {
                     if (currentBuildable == null) return;
 
@@ -69,6 +86,7 @@ namespace HellLumber {
                     currentWoodQuantity -= woodQuantityLostPerBuild;
                     UpdateWoodCount();
 
+                    if (!needHoldBuild) OnSwitchBuildMode?.Invoke(false);
                     OnBuild?.Invoke();
                 }
             }
@@ -99,5 +117,6 @@ namespace HellLumber {
         public string inputAxisName;
         public Buildable buildable;
         public bool blocked;
+        public ButtonInputType buttonInputType;
     }
 }

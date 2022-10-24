@@ -19,7 +19,7 @@ namespace HellLumber {
 
         private void Update()
         {
-            if (Input.GetButtonDown("Submit")) button.onClick.Invoke();
+            //if (Controller.GetButtonDown("Submit")) button.onClick.Invoke();
         }
     }
 }

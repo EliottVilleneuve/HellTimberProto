@@ -1,3 +1,4 @@
+using HellLumber;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,7 +25,7 @@ public class PauseScreen : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Options"))
+        if(Controller.GetButtonDown("Options", ButtonInputType.Pause))
         {
             SetActivation(!active);
         }

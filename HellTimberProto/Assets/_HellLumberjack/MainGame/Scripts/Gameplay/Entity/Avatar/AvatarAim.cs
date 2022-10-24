@@ -1,9 +1,12 @@
+using HellLumber;
 using UnityEngine;
 
 public class AvatarAim : MonoBehaviour
 {
     public Camera cam;
     public Transform aimingPart;
+    public AvatarMove avatarMove;
+    public bool aimForward;
 
     public Vector3 Direction { get; private set; }
 
@@ -14,20 +17,20 @@ public class AvatarAim : MonoBehaviour
     void Start()
     {
         controlledByMouse = false;
-        lastMousePos = Input.mousePosition;
+        lastMousePos = Controller.MousePosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 joystickAxis = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"));
+        Vector2 joystickAxis = Controller.GetVector("Aim");//new Vector2(Controller.GetAxis("Horizontal2"), Controller.GetAxis("Vertical2"));
 
         if (controlledByMouse && joystickAxis.magnitude > 0) controlledByMouse = false;
-        else if(!controlledByMouse && Input.mousePosition != lastMousePos) controlledByMouse = true;
+        else if(!controlledByMouse && Controller.MousePosition != lastMousePos) controlledByMouse = true;
 
         if (controlledByMouse)
         {
-            lastMousePos = Input.mousePosition;
+            lastMousePos = Controller.MousePosition;
             Ray ray = cam.ScreenPointToRay(lastMousePos);
 
             new Plane(Vector3.up, transform.position).Raycast(ray, out float distanceHit);
@@ -39,11 +42,16 @@ public class AvatarAim : MonoBehaviour
         }
         else
         {
-            if(joystickAxis.magnitude > 0.5f)
+            if (joystickAxis.magnitude > 0.5f)
             {
                 Direction = new Vector3(joystickAxis.x, 0, joystickAxis.y).normalized;
-                aimingPart.rotation = Quaternion.LookRotation(Direction);
             }
+            else if (joystickAxis.magnitude < 0.1f && aimForward && avatarMove.Direction.magnitude > 0.1f)
+            {
+                Direction = avatarMove.Direction;
+            }
+            else return;
+            aimingPart.rotation = Quaternion.LookRotation(Direction);
         }
 
         

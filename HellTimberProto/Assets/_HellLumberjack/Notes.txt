@@ -1,2 +1,17 @@
-Gifs
-Build + export sur Itch.io (Windows + WebGL)
+XBOX
+h : 4e
+v : 5e
+Dash : 0
+Barricade : 2
+Chain : 1
+Bomb : 3
+Option : 7
+
+PS5
+h : 3e
+v : 6e
+Dash : 1
+Barricade : 0
+Chain : 2	
+Bomb : 3
+Option : 9

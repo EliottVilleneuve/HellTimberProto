@@ -10,6 +10,8 @@ namespace HellLumber
 
         private float speedMultiplier;
 
+        public Vector3 Direction { get; internal set; }
+
         void Start()
         {
             speedMultiplier = 1;
@@ -17,12 +19,12 @@ namespace HellLumber
 
         void Update()
         {
-            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            Vector2 input = Controller.GetVector("Move");//new Vector2(Controller.GetAxis("Horizontal"), Controller.GetAxis("Vertical"));
 
-            Vector3 movement = Vector3.right * input.x + Vector3.forward * input.y;
-            if (movement.magnitude > 1) movement.Normalize();
+            Direction = Vector3.right * input.x + Vector3.forward * input.y;
+            if (Direction.magnitude > 1) Direction.Normalize();
 
-            characterController.Move(movement * speed * speedMultiplier * Time.deltaTime);
+            characterController.Move(Direction * speed * speedMultiplier * Time.deltaTime);
         }
 
         public void SetMultiplier(float newValue)

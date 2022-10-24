@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_HellLumberjack/Scenes/HellLumberjack.unity
     guid: 3f6c1bebab60d2b46ba603fc123a690c
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 9144b449962712b49bcd365a683218ce, type: 2}

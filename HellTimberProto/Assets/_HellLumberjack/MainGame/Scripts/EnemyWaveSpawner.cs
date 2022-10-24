@@ -1,3 +1,4 @@
+using HellLumber;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -75,7 +76,7 @@ public class EnemyWaveSpawner : MonoBehaviour
             OnDecrementCounter?.Invoke();
         }
 
-        if (Input.GetButtonDown("Skip")) timeBeforeNextWave = 0;
+        if (Controller.GetButtonDown("Skip", ButtonInputType.Skip)) timeBeforeNextWave = 0;
 
         if (timeBeforeNextWave > 0) return;
 
